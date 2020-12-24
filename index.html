@@ -1,25 +1,70 @@
 <html>
 <head>
-    <title>You must love me</title>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Đức e thẹn</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <style>
+        .alert {
+            padding: 20px;
+            background-color: #368cf4;
+            color: white;
+        }
+
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+    </style>
+
 </head>
 <body>
-<h1 style="position:absolute; left:220px; top:175px;">Do you love me?</h1>
-<input type="button" value=" YES " onclick="yesClick()" style="position:absolute; left:285px; top:235px;"/>
-<input type="button" id="btnNo" value="  NO  " onmouseover="noHover()" style="position:absolute; left:360px; top:235px;"/>
+<div class="alert" style="display: none" id="alert">
+<!--    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>-->
+    <strong>Yeah!</strong> Anh cũng thấy em khá xinh và dễ thương &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-emoji-laughing" viewBox="0 0 16 16">
+    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+    <path d="M12.331 9.5a1 1 0 0 1 0 1A4.998 4.998 0 0 1 8 13a4.998 4.998 0 0 1-4.33-2.5A1 1 0 0 1 4.535 9h6.93a1 1 0 0 1 .866.5zM7 6.5c0 .828-.448 0-1 0s-1 .828-1 0S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 0-1 0s-1 .828-1 0S9.448 5 10 5s1 .672 1 1.5z"/>
+</svg>
+</div>
+<h1 style="position:absolute; left:220px; top:175px;">Quỳnh! Em có thích anh không?</h1>
+<input type="button" id="btnYes" value=" YES " style="position:absolute; left:285px; top:235px;"/>
+<input type="button" id="btnNo" value="  NO  " onmouseover="noHover()"
+       style="position:absolute; left:360px; top:235px;"/>
 </body>
 
-<script type="text/javascript">
-    function yesClick()
-    {
-        alert("Yes. you are right ");
+
+</html>
+<script>
+    function yesClick(text) {
+
     }
-    function noHover()
-    {
+
+    function noHover() {
         let x = Math.round(Math.random() * window.innerWidth);
         let y = Math.round(Math.random() * window.innerHeight);
         document.getElementById('btnNo').style.left = x + 'px';
         document.getElementById('btnNo').style.top = y + 'px';
+        document.getElementById('alert').style.display = 'none';
     }
+
+    $(document).ready(function () {
+        $('#btnYes').on('click', function () {
+           document.getElementById('alert').style.display = 'block';
+        })
+    });
 </script>
-</html>
