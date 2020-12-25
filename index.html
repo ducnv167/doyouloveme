@@ -19,29 +19,17 @@
             background-color: #368cf4;
             color: white;
         }
-
-        .closebtn {
-            margin-left: 15px;
-            color: white;
-            font-weight: bold;
-            float: right;
-            font-size: 22px;
-            line-height: 20px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
     </style>
 
 </head>
 <body>
 <div class="alert" style="display: none" id="alert">
-<!--    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>-->
     <strong>Yeah!</strong> Anh cũng thấy em khá xinh và dễ thương &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-emoji-laughing" viewBox="0 0 16 16">
     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
     <path d="M12.331 9.5a1 1 0 0 1 0 1A4.998 4.998 0 0 1 8 13a4.998 4.998 0 0 1-4.33-2.5A1 1 0 0 1 4.535 9h6.93a1 1 0 0 1 .866.5zM7 6.5c0 .828-.448 0-1 0s-1 .828-1 0S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 0-1 0s-1 .828-1 0S9.448 5 10 5s1 .672 1 1.5z"/>
 </svg>
 </div>
-<h1 style="position:absolute; left:220px; top:175px;">Quỳnh! Em có thích anh không?</h1>
+<h1 style="position:absolute; left:220px; top:175px;">Quỳnh! Em có thể cho anh cơ hội để tán em được không?</h1>
 <input type="button" id="btnYes" value=" YES " style="position:absolute; left:285px; top:235px;"/>
 <input type="button" id="btnNo" value="  NO  " onmouseover="noHover()"
        style="position:absolute; left:360px; top:235px;"/>
@@ -50,10 +38,6 @@
 
 </html>
 <script>
-    function yesClick(text) {
-
-    }
-
     function noHover() {
         let x = Math.round(Math.random() * window.innerWidth);
         let y = Math.round(Math.random() * window.innerHeight);
