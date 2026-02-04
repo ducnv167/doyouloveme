@@ -1,0 +1,3 @@
+# Cài đặt WSL với Ubuntu (mặc định)
+wsl --install
+
