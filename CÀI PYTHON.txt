@@ -1,0 +1,40 @@
+CÀI PYTHON
+
+# Cập nhật hệ thống
+sudo apt update
+
+# Cài đặt các gói cần thiết
+sudo apt install software-properties-common -y
+
+# Thêm PPA deadsnakes
+sudo add-apt-repository ppa:deadsnakes/ppa -y
+
+# Cập nhật lại danh sách package
+sudo apt update
+
+# Cài đặt Python 3.13
+sudo apt install python3.13 -y
+
+# Cài đặt thêm các gói hữu ích
+sudo apt install python3.13-venv python3.13-dev -y
+
+
+
+CAI PANDAS
+python3 -m pip install pandas
+python3 -m pip install undetected-chromedriver
+
+
+CÀI CHROME
+# Tải Chrome
+cd /tmp
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+# Cài đặt Chrome
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+
+# Nếu có lỗi dependency, chạy:
+sudo apt -f install -y
+
+# Kiểm tra đã cài thành công:
+google-chrome --version
