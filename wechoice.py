@@ -74,7 +74,7 @@ class WeChoiceBot:
             )
             print("    [!] Phát hiện recaptcha-checkbox-border → RELOAD TRANG!")
             self.driver.refresh()
-            time.sleep(5)
+            time.sleep(2.5)
             return True  # Đã reload
         except:
             return False  # Không có recaptcha-checkbox-border
@@ -100,12 +100,12 @@ class WeChoiceBot:
                 if "speedbump" in curr_url or "gaplustos" in curr_url:
                     print("      [!] Phát hiện Checkpoint Điều khoản. Click 'Tôi hiểu'...")
                     self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-                    time.sleep(5)
+                    time.sleep(2.5)
                     btns = self.driver.find_elements(By.TAG_NAME, "button")
                     for b in btns:
                         if any(x in b.text.lower() for x in ["hiểu", "tôi hiểu", "confirm", "i understand", "understand", "agree", "đồng ý", "submit"]):
                             self.driver.execute_script("arguments[0].click();", b)
-                            time.sleep(2)
+                            time.sleep(1)
                             break
                 
                 elif "oauth" in curr_url or "consent" in curr_url:
@@ -114,11 +114,11 @@ class WeChoiceBot:
                     for b in btns:
                         if any(x in b.text.lower() for x in ["continue", "tiếp tục"]):
                             self.driver.execute_script("arguments[0].click();", b)
-                            time.sleep(3)
+                            time.sleep(1.5)
                             break
                 else: break
             except: break
-            time.sleep(20)
+            time.sleep(10)
     
     def reload_and_wait(self, url=None, sleep_sec=5):
         """Reload lại trang hiện tại (hoặc URL chỉ định) rồi đợi ổn định."""
@@ -126,7 +126,7 @@ class WeChoiceBot:
             self.driver.get(url)
         else:
             self.driver.refresh()
-        time.sleep(sleep_sec)
+        time.sleep(sleep_sec / 2)
 
 
     def run_process(self, email, password):
@@ -155,7 +155,7 @@ class WeChoiceBot:
                 
                 login_btn = self.wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "a.login-btn")))
                 self.driver.execute_script("arguments[0].click();", login_btn)
-                time.sleep(5)
+                time.sleep(2.5)
 
                 # Vào iframe nút Google
                 iframes = self.driver.find_elements(By.TAG_NAME, "iframe")
@@ -165,7 +165,7 @@ class WeChoiceBot:
                         break
                 self.wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@role='button']"))).click()
                 self.driver.switch_to.default_content()
-                time.sleep(5)
+                time.sleep(2.5)
 
                 # Popup Google Login
                 if len(self.driver.window_handles) > 1:
@@ -173,9 +173,9 @@ class WeChoiceBot:
                 
                 # Nhập Mail & Pass
                 self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "input[type='email']"))).send_keys(email + Keys.ENTER)
-                time.sleep(6)
+                time.sleep(3)
                 self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "input[type='password']"))).send_keys(password + Keys.ENTER)
-                time.sleep(6)
+                time.sleep(3)
                 
                 # ========== QUAY VỀ WECHOICE ==========
                 try:
@@ -188,7 +188,7 @@ class WeChoiceBot:
                     else:
                         self.driver.switch_to.window(self.main_handle)
                 
-                time.sleep(10)
+                time.sleep(5)
                 
                 # Kiểm tra đăng nhập thành công
                 if "wechoice.vn" not in self.driver.current_url:
@@ -235,7 +235,7 @@ class WeChoiceBot:
                         print("      ✓ Đã click nút 'Bình chọn'.")
 
                         self.driver.switch_to.default_content()
-                        time.sleep(1)
+                        time.sleep(0.5)
 
                         # 3. Tìm iframe reCAPTCHA (nếu có)
                         recaptcha_iframes = self.driver.find_elements(By.TAG_NAME, "iframe")
@@ -250,7 +250,7 @@ class WeChoiceBot:
                         if not target_iframe:
                             # 👉 CASE CỦA BẠN: ĐÃ CLICK, KHÔNG CÓ CAPTCHA → COI NHƯ THÀNH CÔNG
                             print("      ✓ Đã click, không thấy iframe reCAPTCHA → COI NHƯ ĐÃ VOTE XONG.")
-                            time.sleep(3)
+                            time.sleep(1.5)
                             self.clear_browser_data()
                             return 1
 
@@ -330,10 +330,10 @@ def main(file_path):
                 break
             except PermissionError:
                 print("    ⚠ Vui lòng ĐÓNG FILE để lưu kết quả...")
-                time.sleep(4)
+                time.sleep(2)
         
         print(f"    ✓ Đã lưu trạng thái: {status}")
-        time.sleep(2)
+        time.sleep(1)
 
     bot.driver.quit()
     print("\n✓ CHIẾN DỊCH HOÀN TẤT.")

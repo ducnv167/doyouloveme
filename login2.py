@@ -81,7 +81,7 @@ class WeChoiceBot:
             # Click nút đăng nhập
             login_btn = self.wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "a.login-btn")))
             self.driver.execute_script("arguments[0].click();", login_btn)
-            time.sleep(2)
+            time.sleep(1)
             
             # Vào iframe nút Google
             iframes = self.driver.find_elements(By.TAG_NAME, "iframe")
@@ -92,7 +92,7 @@ class WeChoiceBot:
             
             self.wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@role='button']"))).click()
             self.driver.switch_to.default_content()
-            time.sleep(3)
+            time.sleep(1.5)
             
             # Chuyển sang popup Google Login
             if len(self.driver.window_handles) > 1:
@@ -103,14 +103,14 @@ class WeChoiceBot:
             email_input = self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "input[type='email']")))
             email_input.send_keys(email)
             email_input.send_keys(Keys.ENTER)
-            time.sleep(6)
+            time.sleep(3)
             
             # Nhập password
             print("    → Đang nhập password...")
             pass_input = self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "input[type='password']")))
             pass_input.send_keys(password)
             pass_input.send_keys(Keys.ENTER)
-            time.sleep(6)
+            time.sleep(3)
             
             # Xử lý checkpoints
             self.handle_all_checkpoints()
@@ -124,7 +124,7 @@ class WeChoiceBot:
                 if len(self.driver.window_handles) > 0:
                     self.driver.switch_to.window(self.driver.window_handles[0])
             
-            time.sleep(4)
+            time.sleep(2)
             
             # Kiểm tra đăng nhập thành công
             if "wechoice.vn" not in self.driver.current_url:
@@ -147,7 +147,7 @@ class WeChoiceBot:
             elem = elems[0]
             WebDriverWait(self.driver, 15).until(EC.element_to_be_clickable(elem))
             elem.click()
-            time.sleep(3)
+            time.sleep(1.5)
             elems_1 = self.driver.find_elements(
                 By.CSS_SELECTOR, "#yDmH0d > c-wiz > main > div.JYXaTc.F8PBrb > div > div > div:nth-child(2) > div > div > button > span")
             if elems_1:
@@ -160,7 +160,7 @@ class WeChoiceBot:
             elem = elems[0]
             WebDriverWait(self.driver, 15).until(EC.element_to_be_clickable(elem))
             elem.click()
-            time.sleep(3)
+            time.sleep(1.5)
             elems_1 = self.driver.find_elements(
                 By.CSS_SELECTOR, "#yDmH0d > c-wiz > main > div.JYXaTc.F8PBrb > div > div > div:nth-child(2) > div > div > button > span")
             if elems_1:
@@ -289,7 +289,7 @@ class WeChoiceBot:
         
         try:
             self.driver.get(WECHOICE_URL)
-            time.sleep(3)
+            time.sleep(1.5)
             
             # Kiểm tra có đang ở trang chủ không
             if "wechoice.vn" in self.driver.current_url:
@@ -335,7 +335,7 @@ class WeChoiceBot:
                     if elem:
                         print(f"      [!] Tìm thấy nút logout: {selector}")
                         self.driver.execute_script("arguments[0].click();", elem[0])
-                        time.sleep(3)
+                        time.sleep(1.5)
                         logout_clicked = True
                         break
                 except:
@@ -346,7 +346,7 @@ class WeChoiceBot:
                 print("      [!] Không tìm thấy nút logout, đang xóa cookies...")
                 self.clear_browser_data()
                 self.driver.get(WECHOICE_URL)
-                time.sleep(3)
+                time.sleep(1.5)
             
             print("      ✓ ĐĂNG XUẤT THÀNH CÔNG!")
             return True
@@ -387,7 +387,7 @@ class WeChoiceBot:
             
             # Chờ một chút để xem trang chủ
             print("    → Đang ở trang chủ, chờ 5 giây...")
-            time.sleep(1)
+            time.sleep(0.5)
             return True
             
             # # BƯỚC 3: ĐĂNG XUẤT
@@ -415,7 +415,7 @@ class WeChoiceBot:
                 self.driver.execute_script("window.scrollTo(0, arguments[0]);", y)
                 break
             self.driver.execute_script("window.scrollBy(0, arguments[0]);", step)
-            time.sleep(0.3)
+            time.sleep(0.15)
 
 def main(file_path):
     if not os.path.exists(file_path):
@@ -456,11 +456,11 @@ def main(file_path):
                 break
             except PermissionError:
                 print("    ⚠ Vui lòng ĐÓNG FILE để lưu kết quả...")
-                time.sleep(3)
+                time.sleep(1.5)
         
         # Nghỉ giữa các account
         print(f"    → Chờ 3 giây trước khi xử lý account tiếp theo...")
-        time.sleep(3)
+        time.sleep(1.5)
     
     bot.driver.quit()
     print(f"\n{'*'*60}")
